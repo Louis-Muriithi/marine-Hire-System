@@ -21,7 +21,7 @@ res.json(cars)
 app.post('/cars', (req, res) => {
     const newCar = req.body
     cars.push(newCar)
-res.json(cars)
+    res.json(newCar)
 })
 
 app.delete('/cars/:id', (req, res) => {
