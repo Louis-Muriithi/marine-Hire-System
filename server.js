@@ -1,7 +1,7 @@
 import express from 'express'
 
 const app = express()
-const port = 3000
+const PORT = 3000
 
 app.use(express.json())
 app.use(express.static('public'))
@@ -26,11 +26,16 @@ app.post('/cars', (req, res) => {
 
 app.delete('/cars/:id', (req, res) => {
     const id = Number(req.params.id)
-    const index = cars.findIndex(car => car.id === id)  
+    const index = cars.findIndex(car => car.id === id)
+
+    if (index === -1) {
+        return res.status(404).json({ message: `Car ${id} not found.` })
+    }
+
     cars.splice(index, 1)
-    res.json({message: `Car ${id} deleted successfully.`, cars})
+    res.json({ message: `Car ${id} deleted successfully.`, cars })
 })
 
-app.listen(port, () =>{
-    console.log(`Server is running on ${port}`)
+app.listen(PORT, () =>{
+    console.log(`Server is running on ${PORT}`)
 })
