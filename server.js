@@ -6,15 +6,7 @@ const PORT = 3000
 app.use(express.json())
 app.use(express.static('public'))
 
-// ─────────────────────────────────────
-// TEMPORARY DATA STORAGE
-// Will be replaced with PostgreSQL later
-// ─────────────────────────────────────
-const cars = [
-    { id: 1, make: 'Toyota', model: 'Camry', price: 2500 },
-    { id: 2, make: 'Honda', model: 'Civic', price: 22000 },
-    { id: 3, make: 'Ford', model: 'Mustang', price: 65000 }
-]
+import { cars } from './data/cars.js'          
 
 // GET /cars — Fetch all cars
 app.get('/cars', (req, res) => {
